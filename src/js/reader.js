@@ -69,9 +69,8 @@ function readGoogleSheet(json) {
 	out.columns = keys; //I think I can do this (if not I need to make out an object to begin with)
 
 	params.responses = out;
-	console.log(params.responses)
 
-	plotResponses();
+	colorBoxes();
 }
 
 //for now I will work with a static csv file

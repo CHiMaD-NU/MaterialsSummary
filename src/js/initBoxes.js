@@ -24,9 +24,7 @@ function populateBoxes(){
 					.attr('class', function(d,j){return 'box '+c+j})
 					.attr('id', function(d,j){return c+params.cleanString(d);})
 					.style('border-width',function(d,j){
-						console.log(c, params.answers[0][d])
 						if (c.toLowerCase().includes(params.answers[0][d].toLowerCase())) {
-							console.log('match')
 							return 3
 						}
 						return 1
@@ -44,5 +42,50 @@ function populateBoxes(){
 
 }
 
+//count the uniq elements in an array and return both the counts and the unique array
+function countUniq(arr){
+	out = {'uniq':[], 'num':{}};
 
+	arr.forEach(function(a,i){
+		ac = params.cleanString(a);
+		if (!out.uniq.includes(ac)){
+			out.uniq.push(ac);
+			out.num[ac] = 1;
+		} else {
+			out.num[ac] += 1;
+		}
+	})
+
+	return out;
+}
+
+function colorBoxes(){
+
+	//count up all the responses
+	params.responses.columns.forEach(function(rc,i){
+		if (!rc.includes('Timestamp')){
+			vals = []
+			params.responses.forEach(function(r,j){
+				//get the column
+				vals.push(r[rc])
+				if (j == params.responses.length-1){
+					uVals = countUniq(vals);
+					params.columns.forEach(function(c,k){
+						id = c+params.cleanString(rc)
+						var pct = 0;
+						if (uVals.num[params.cleanString(c)]){
+							pct = uVals.num[params.cleanString(c)]/params.responses.length;
+							d3.select('#'+id).style('background-color','red')
+
+						}
+					})
+
+				}
+			})
+
+		}
+	})
+
+
+}
 
