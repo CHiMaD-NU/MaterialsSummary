@@ -97,7 +97,6 @@ function colorBoxes(){
 							var cl = d3.select('#'+id).node().classList[1];
 							var id2 = id.replace(cl,'');
 							d3.select('#'+id2).classed('wrong',true)
-							console.log(d3.select('#'+id2).node(),cl,id2);
 
 						}
 					})
