@@ -75,7 +75,7 @@ function resizeBoxes(lim, nLim){
 			.style('font-size', fsR*mult + 'px')
 			.style('height', bh*mult + 'px')
 			.style('line-height', bh*mult + 'px')
-			.style('padding-top', (bh*mult - fsR*mult)/2. + 'px')
+			.style('padding-top', (bh*mult - fsR*mult)*2. + 'px') //not sure I understand why I multiply by 2 (but it appears to work!)
 		bw = parseFloat(d3.select('.box').style('width'));
 		bh = parseFloat(d3.select('.box').style('height'));
 		fsB = parseFloat(d3.select('.box').style('font-size'));
