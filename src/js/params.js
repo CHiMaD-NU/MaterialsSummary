@@ -22,7 +22,12 @@ function defineParams(){
 		this.answers;
 		this.responses;
 
+//this defines the colormap
+		this.colorMap = d3.scaleLinear().domain([0,1]).interpolate(d3.interpolateHcl).range([d3.rgb("#E0E0E0"), d3.rgb('#2C78CA')]);
 
+//this defines the minimum percentage of answers that is acceptable (otherwise the label is emphasized as something to discuss)
+		this.pctLim = 0.8;
+		
 		this.cleanString = function(s){
 			return s.replace(/sub\>/g,'').replace(/\s/g,'').replace(/[^a-zA-Z ]/g, "").toLowerCase();
 		}

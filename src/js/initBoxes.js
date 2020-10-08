@@ -15,19 +15,31 @@ function populateBoxes(){
 
 				
 
-	//create the grid of boxes (using html divs)
+	//create the grid of boxes (using html divs), and label the answers
 	params.columns.forEach(function(c,j){
 		var dv = d3.select('#'+c.toLowerCase()).select('.boxContainer').selectAll('.box')
 			.data(params.answers.columns).enter()
 			.filter(function(d) { return !d.includes('Timestamp') })
 				.append('div')
-					.attr('class', function(d,j){return 'box '+c+j})
+					.attr('class', function(d,j){return 'box '+c})
 					.attr('id', function(d,j){return c+params.cleanString(d);})
 					.style('border-width',function(d,j){
 						if (c.toLowerCase().includes(params.answers[0][d].toLowerCase())) {
-							return 3
+							return 4
 						}
 						return 1
+					})
+					.style('line-height',function(d,j){
+						if (c.toLowerCase().includes(params.answers[0][d].toLowerCase())) {
+							return '1.5vw'
+						}
+						return '2vw'
+					})
+					.attr('data-answer',function(d,j){
+						if (c.toLowerCase().includes(params.answers[0][d].toLowerCase())) {
+							return 'true'
+						}
+						return 'false'
 					})
 				
 	})
@@ -75,7 +87,17 @@ function colorBoxes(){
 						var pct = 0;
 						if (uVals.num[params.cleanString(c)]){
 							pct = uVals.num[params.cleanString(c)]/params.responses.length;
-							d3.select('#'+id).style('background-color','red')
+
+						}
+						d3.select('#'+id)
+							.style('background-color',params.colorMap(pct))
+							.text(pct.toFixed(2))
+							.attr('data-pct',pct)
+						if (d3.select('#'+id).attr('data-answer') == 'true' & pct < params.pctLim){
+							var cl = d3.select('#'+id).node().classList[1];
+							var id2 = id.replace(cl,'');
+							d3.select('#'+id2).classed('wrong',true)
+							console.log(d3.select('#'+id2).node(),cl,id2);
 
 						}
 					})

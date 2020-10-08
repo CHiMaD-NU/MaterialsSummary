@@ -59,14 +59,25 @@ html,body {
 	margin-left:5px;
 	margin:2px;
 }
-
+.wrong{
+	font-style: italic;
+	color: #d92b9c;
+}
+.wrong::before {
+	content: "**";
+}
+.wrong::after {
+	content: "**";
+}
 .box{
 	box-sizing: border-box;
 	width: 5vw;
 	height: 2vw;
 	border:1px solid black;
 	margin:2px;
-
+	line-height:2vw;
+	font-size:1vw;
+	text-align:center;
 }
 
 .wrapperBox{
