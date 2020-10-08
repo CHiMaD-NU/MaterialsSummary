@@ -32,7 +32,11 @@ html,body {
 	margin:auto;
 }
 
-
+.outerColumn{
+	position: relative;
+	float: left;
+	width:50%;
+}
 
 .column{
 	box-sizing: border-box;
@@ -45,7 +49,7 @@ html,body {
 	font-size: 1.2vw;
 	/*text-decoration: underline;*/
 	transform: rotate(-45deg)translate(2vw,-5px);
-	width: 5vw;
+	/*width: 5vw;*/
 }
 .rowTitle{
 	box-sizing: border-box;
@@ -104,8 +108,8 @@ html,body {
 }
 
 .para{
-	margin:20px;
-	font-size:20px;
+	margin:1vw;
+	font-size:1.5vw;
 	text-align: justify;
 	text-justify: inter-word;
 	display: inline-block;

@@ -45,13 +45,13 @@ function populateBoxes(){
 	})
 
 	//center the boxes on the page
-	var wl = d3.select('#labels').node().getBoundingClientRect().width
-	var w = 0
-	params.columns.forEach(function(c,j){
-		w += d3.select('#'+c.toLowerCase()).select('.boxContainer').select('.box').node().getBoundingClientRect().width;
-	})
-	d3.select('#container').style('margin-left',(window.innerWidth-w)/2. - wl)
-
+	// var wl = d3.select('#labels').node().getBoundingClientRect().width
+	// var w = 0
+	// params.columns.forEach(function(c,j){
+	// 	w += d3.select('#'+c.toLowerCase()).select('.boxContainer').select('.box').node().getBoundingClientRect().width;
+	// })
+	// d3.select('#container').style('margin-left',(window.innerWidth-w)/2. - wl)
+	resizer();
 }
 
 //count the uniq elements in an array and return both the counts and the unique array
