@@ -26,9 +26,15 @@ function resizePara(lim, nLim){
 
 function resizeBoxes(lim, nLim){
 
-	var container = document.getElementById('container');
+	var container = d3.select('#container').node();
+	var boxContainer = d3.select('.boxContainer').node();
 	var rect = container.getBoundingClientRect();
+	var boxRect = boxContainer.getBoundingClientRect();
 	var height = window.innerHeight - rect.top;
+	//in case this is has a very tall aspect ratio (e.g. mobile on portrait layout)
+	if (rect.height >= boxRect.height*2. & boxRect.height < height){
+		height = boxRect.height;
+	}
 
 	var bw = parseFloat(d3.select('.box').style('width'));
 	var bh = parseFloat(d3.select('.box').style('height'));
@@ -77,7 +83,7 @@ function resizeBoxes(lim, nLim){
 		fsC = parseFloat(d3.select('.columnTitle').style('font-size'));
 		rect = container.getBoundingClientRect();
 		diff = height - rect.height;
-		//console.log("box", nTrial, rect.height, diff, bw, bh, fsB, fsR, fsC, mult)
+		//console.log("box", nTrial, rect.height, boxRect.height, diff, bw, bh, fsB, fsR, fsC, mult)
 		nTrial += 1
 	}
 	//console.log(height, diff)

@@ -1,5 +1,6 @@
 
 //this function will use the answers to create a grid of boxes and highlight the correct values
+//in hindsight, this might have been better as an svg with rects...
 function populateBoxes(){
 
 	//add the row labels
